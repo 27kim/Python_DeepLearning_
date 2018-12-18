@@ -1,3 +1,4 @@
+#tensorflow import
 import tensorflow as tf
 
 # 데이터
@@ -10,18 +11,22 @@ b = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
 
 hypothesis = w * x_data + b
 
-# 식에 대입
+# cost 구하는 식 생성
 cost = tf.reduce_mean(tf.square(hypothesis - y_data))
+
 # Gradient Decent 가져오기
 optimizer = tf.train.GradientDescentOptimizer(0.1)
 
+#optimizer 가 최소값 구할 수 있도록
 train = optimizer.minimize(cost)
 
+# tensorflow 사용하기 위한 변수 초기화
 init = tf.global_variables_initializer()
 
 # 세션 가져오기
 sess = tf.Session()
 
+# variable 을 초기화
 sess.run(init)
 
 for step in range(2001):
